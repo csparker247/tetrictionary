@@ -1,29 +1,36 @@
 //tetrictionary
 #include <string>
 #include <set>
-#include <iostream>     // std::cout
-#include <fstream>      // std::ifstream
+#include <iostream>
+#include <fstream>
+using namespace std;
 
-struct Dictionary {
-  Dictionary() {
-    // load _words, here's one possible implementation:
-    std::ifstream input ("/usr/share/dict/words");
-    for (std::string line; getline(input, line);) {
-      _words.insert(line);
-    }
-  }
-  
-  bool contains(std::string const& word) const { 
-  	return _words.count(word);
-  }
+class Dictionary {
+		set<string> _words;	
+	public:
+		Dictionary() {
+		    ifstream input ("/usr/share/dict/words");
+		    for (string line; getline(input, line);) {_words.insert(line);}
+		}
 
-  std::set<std::string> _words;
+		bool contains(string const& word) const {return _words.count(word);}
 
+		char getWord(int length) {
+			char word[16] = "bug";
+			return word;
+		}
 };
 
+//Setting up some variables
+Dictionary mainDict;
+int usr_input;
+char dict_output[16];
+
 int main () {
-	Dictionary mainDict;
-	std::string test = "true";
-	bool result = mainDict.contains(test);
-	std::cout << result; 
+	cout << "Enter a length: ";
+	cin >> usr_input;
+	cout << usr_input;
+	
+	dict_output = mainDict.getWord(usr_input);
+	cout << dict_output;
 }
